@@ -5,6 +5,9 @@
 
 .idea/
 
+# Ignore vcpkg manifest files
+vcpkg_installed/
+
 # User-specific files
 *.rsuser
 *.suo

@@ -1,0 +1,15 @@
+<Project  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<ItemGroup>
+		<None Include="$(SolutionDir)/x64/$(Configuration)/**" 
+				Link="\%(Filename)%(Extension)" 
+				CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+
+	<!--
+	<Target Name="CopyNative" AfterTargets="AfterBuild">
+		<Message Text="Copying native libraries $(Platform) $(Configuration)" Importance="high" />
+	</Target>
+	-->
+
+</Project>

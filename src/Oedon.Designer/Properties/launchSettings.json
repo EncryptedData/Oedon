@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Oedon.Designer": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

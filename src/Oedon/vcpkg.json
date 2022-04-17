@@ -6,6 +6,7 @@
     "glm",
     "openmesh",
     "assimp",
-    "spdlog"
+    "spdlog",
+	"nlohmann-json"
   ]
 }

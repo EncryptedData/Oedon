@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config id="oedon-nativeinterop" xmlns="urn:SharpGen.Config">
+  <assembly>Oedon.NativeInterop</assembly>
+  <namespace>Oedon.NativeInterop</namespace>
+  <depends>SharpGen.Runtime</depends>
+
+  <sdk name="StdLib" />
+
+  
+
+  <include-dir>$(THIS_CONFIG_PATH)/../Oedon/include</include-dir>
+  <include file="Oedon.h" namespace="Oedon.NativeInterop" attach="true" />
+
+  <extension>
+    <create class="Oedon.NativeInterop.OedonCpp" visibility="public static" />
+  </extension>
+
+  <mapping>
+    <map function="Sum" dll='"Oedon"' group="Oedon.NativeInterop.OedonCpp" />
+    <map function="Foo" dll='"Oedon"' group="Oedon.NativeInterop.OedonCpp" />
+    <map function="Bar" dll='"Oedon"' group="Oedon.NativeInterop.OedonCpp" />
+  </mapping>
+  
+</config>

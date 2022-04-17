@@ -8,6 +8,10 @@ namespace Oedon.Designer.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        public string Greeting => $"Calling stub: {OedonNative.Stub(1,1)}";
+        public MainWindowViewModel()
+        {
+        }
+
+        public string Greeting => $"Calling stub: {OedonCpp.Sum(2, 2)} {OedonCpp.Foo("Hello World")}";
     }
 }

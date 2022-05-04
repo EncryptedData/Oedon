@@ -1,15 +1,33 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <SharpGenConsumerMapping Remove="Mapping.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpGen.Runtime" Version="1.2.1" />
+    <PackageReference Include="SharpGenTools.Sdk" Version="1.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Oedon\Oedon.vcxproj" />
   </ItemGroup>
 
-  <Import Project="CopyNative.targets"/>
+  <Import Project="CopyNative.targets" />
+  
+  <!-- Handle Generating C++ to C# bindings -->
+  <ItemGroup>
+    <SharpGenMapping Include="Mapping.xml" />
+  </ItemGroup>
 
 </Project>

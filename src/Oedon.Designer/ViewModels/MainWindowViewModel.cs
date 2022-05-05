@@ -29,7 +29,7 @@ namespace Oedon.Designer.ViewModels
             AddMultiplyNodeCommand = ReactiveCommand.CreateFromTask(OnAddMultiplyNode);
         }
 
-        public string StatusBarText => $"Calling stub: {OedonNative.Stub(1,1)}";
+        public string StatusBarText => $"Calling stub: {OedonCpp.Sum(1,1)}";
 
         public string OutputString
         {

@@ -5,13 +5,17 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
       - uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: amd64
-      - name: Checking out required submodules
-        run: git submodule update --init --recursive
-      - name: Bootstrapping Repository
-        run: .\bootstrap.ps1
+      - name: Invoking Vcpkg
+        uses: lukka/get-cmake@latest
+        with:
+          vcpkgDirectory: '${{ github.workspace }}/externals/vcpkg'
+          vcpkgJsonGlob: '**/vcpkg.json'
+          runVcpkgInstall: true
       - name: Build Windows Debug
         run: msbuild.exe Oedon.sln /property:Configuration=Debug /property:Platform=x64
       - name: Build Windows Release

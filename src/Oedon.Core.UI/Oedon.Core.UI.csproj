@@ -25,4 +25,8 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\externals\EncryptedData.EventAggregator\EncryptedData.EventAggregator.Avalonia\EncryptedData.EventAggregator.Avalonia.csproj" />
+  </ItemGroup>
+
 </Project>

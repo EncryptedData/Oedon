@@ -7,7 +7,7 @@ jobs:
       - name: Build Windows Debug
       - uses: actions/checkout@v2
       - uses: ilammy/msvc-dev-cmd@v1
-      - with:
+        with:
           arch: amd64
       - run: msbuild.exe Oedon.sln /property:Configuration=Debug /property:Platform=x64
       - name: Build Windows Release

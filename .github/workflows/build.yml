@@ -4,19 +4,21 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Project
+        uses: actions/checkout@v2
         with:
           submodules: 'recursive'
-      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Find MSVC
+        uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: amd64
       - name: Invoking Vcpkg
-        uses: lukka/get-cmake@latest
+        uses: lukka/run-vcpkg@v10
         with:
           vcpkgDirectory: '${{ github.workspace }}/externals/vcpkg'
           vcpkgJsonGlob: '**/vcpkg.json'
           runVcpkgInstall: true
       - name: Build Windows Debug
-        run: msbuild.exe Oedon.sln /property:Configuration=Debug /property:Platform=x64
+        run: msbuild.exe -restore Oedon.sln /property:Configuration=Debug /property:Platform=x64
       - name: Build Windows Release
-        run: msbuild.exe Oedon.sln /property:Configuration=Release /property:Platform=x64
+        run: msbuild.exe -restore Oedon.sln /property:Configuration=Release /property:Platform=x64

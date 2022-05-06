@@ -3,21 +3,23 @@
         xmlns:vm="using:Oedon.Designer.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Oedon.Core.UI.Controls;assembly=Oedon.Core.UI"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Oedon.Designer.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Oedon.Designer">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
     <DockPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=StatusBarText}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
         
         <Grid ColumnDefinitions="1*" RowDefinitions="1*,Auto,1*">
+            
             
             <StackPanel Grid.Row="0" Orientation="Vertical" Background="Blue">
                 
@@ -25,9 +27,22 @@
             
             <GridSplitter Grid.Row="1" MinHeight="5" Background="DarkGray" />
             
-            <StackPanel Grid.Row="2" Orientation="Vertical" Background="Gray">
+            <DockPanel Grid.Row="2" >
                 
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <Button Content="Add Float Node" Command="{Binding Path=AddTestNodeCommand}" />
+                    <Button Content="Add Add Node" Command="{Binding Path=AddAddNodeCommand}" />
+                    <Button Content="Add Multiply Node" Command="{Binding Path=AddMultiplyNodeCommand}" />
+                    <Button Content="Add Output Node" Command="{Binding Path=AddOutputNodeCommand}" />
+                    <Button Content="Calculate" Command="{Binding Path=DoCalculationCommand}" />
+                    <Label Content="   Calculation Result: " />
+                    <Label Content="{Binding Path=OutputString}" />
+                </StackPanel>
+                
+                <controls:Blueprint />
+            </DockPanel>
+            
+            
             
         </Grid>
     </DockPanel>

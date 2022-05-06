@@ -1,0 +1,56 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Oedon.Core.UI.Controls;assembly=Oedon.Core.UI"
+             xmlns:converters="clr-namespace:Oedon.Core.UI.Converters;assembly=Oedon.Core.UI"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Oedon.Designer.Core.UI.Views.BasicNodeView"
+             d:DataContext="{d:DesignInstance controls:BlueprintNodeVM, IsDesignTimeCreatable=False}">
+    
+    <UserControl.Resources>
+        <converters:IsEqualConverter x:Key="IsEqualConverter" />
+    </UserControl.Resources>
+    
+    <UserControl.Styles>
+        <Style Selector="Border">
+            <Setter Property="Background" Value="DarkGray" />
+        </Style>
+        
+    </UserControl.Styles>
+    
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="controls:BlueprintPinVM">
+            <StackPanel Orientation="Horizontal">
+                <Label IsVisible="{Binding PinType, 
+                    Converter={StaticResource IsEqualConverter}, 
+                    ConverterParameter={x:Static controls:BlueprintPinType.Output}}" 
+                       Content="{Binding Name}" />
+                
+                <Ellipse Fill="{Binding PinColor}" Width="10" Height="10" />
+                
+                <Label IsVisible="{Binding PinType, 
+                    Converter={StaticResource IsEqualConverter}, 
+                    ConverterParameter={x:Static controls:BlueprintPinType.Input}}" 
+                       Content="{Binding Name}" />
+            </StackPanel>
+            
+        </DataTemplate>
+    </UserControl.DataTemplates>
+    
+    <Border  BorderThickness="4">
+        
+        <DockPanel Background="DarkGray" Width="{Binding Width}" Height="{Binding Height}">
+        
+            <Label HorizontalAlignment="Center" DockPanel.Dock="Top" Content="{Binding Name}" Foreground="White" />
+            
+            <controls:BlueprintPinGroup VerticalAlignment="Center" DockPanel.Dock="Left" Orientation="Vertical" Pins="{Binding InputPins}" />
+            
+            <controls:BlueprintPinGroup VerticalAlignment="Center" Background="DarkGray" DockPanel.Dock="Right" Orientation="Vertical" Pins="{Binding OutputPins}" />
+        
+            <!-- Empty Center display -->
+            <StackPanel />
+        
+        </DockPanel>
+    </Border>
+</UserControl>

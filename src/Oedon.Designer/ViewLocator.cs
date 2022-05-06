@@ -1,6 +1,9 @@
 using System;
+using System.Reflection;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
+using Oedon.Core.UI.ViewModels;
+using Oedon.Core.UI.Views;
 using Oedon.Designer.ViewModels;
 
 namespace Oedon.Designer
@@ -9,22 +12,22 @@ namespace Oedon.Designer
     {
         public IControl Build(object data)
         {
-            var name = data.GetType().FullName!.Replace("ViewModel", "View");
-            var type = Type.GetType(name);
+            Type type = data.GetType();
+            ViewAttribute? viewAttribute = type.GetCustomAttribute<ViewAttribute>();
 
-            if (type != null)
+            if (viewAttribute is not null)
             {
-                return (Control)Activator.CreateInstance(type)!;
+                return (Control)Activator.CreateInstance(viewAttribute.ViewType)!;
             }
             else
             {
-                return new TextBlock { Text = "Not Found: " + name };
+                return new TextBlock { Text = $"View Not Found for {type.FullName}" };
             }
         }
 
         public bool Match(object data)
         {
-            return data is ViewModelBase;
+            return data is BaseViewModel;
         }
     }
 }

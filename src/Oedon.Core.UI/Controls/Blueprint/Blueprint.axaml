@@ -1,0 +1,59 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Oedon.Core.UI.Controls"
+             xmlns:converters="clr-namespace:Oedon.Core.UI.Converters"
+             xmlns:viewModels="clr-namespace:Oedon.Core.UI.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Oedon.Core.UI.Controls.Blueprint"
+             x:Name="Blueprint"
+             d:DataContext="{d:DesignInstance viewModels:BlueprintDocumentVM, IsDesignTimeCreatable=False}">
+    
+    <UserControl.Styles>
+        <Style Selector="ContentPresenter">
+            <Setter Property="Canvas.Left" Value="{Binding Path=XPos}" />
+            <Setter Property="Canvas.Top" Value="{Binding Path=YPos}" />
+        </Style>
+        
+        
+    </UserControl.Styles>
+    
+    <UserControl.Resources>
+        <VisualBrush x:Key="GridBackground" TileMode="Tile" SourceRect="0,0,20,20" DestinationRect="0,0,20,20">
+            <VisualBrush.Visual>
+                <Path Data="M 0,0 L 0,20 L 20,20" Stroke="DarkGray" StrokeThickness="2" />
+            </VisualBrush.Visual>
+        </VisualBrush>
+        
+        <converters:MultiEnumerationConverter x:Key="MultiEnumerationConverter" />
+    </UserControl.Resources>
+    
+    <ZoomBorder Stretch="None"
+                ClipToBounds="False"
+                Focusable="True"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Initialized="ZoomBorder_Initialized">
+        
+        <AdornerLayer>
+            <ItemsControl Items="{Binding BlueprintItems}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas Background="{StaticResource GridBackground}"
+                                ClipToBounds="False"
+                                Initialized="Canvas_OnInitialized" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            
+                <ItemsControl.DataTemplates>
+                
+                
+                    <DataTemplate DataType="controls:BlueprintConnectionVM">
+                        <controls:BlueprintConnection />
+                    </DataTemplate>
+                </ItemsControl.DataTemplates>
+            </ItemsControl>
+        </AdornerLayer>
+    </ZoomBorder>
+</UserControl>

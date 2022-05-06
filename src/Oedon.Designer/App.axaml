@@ -8,5 +8,8 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+        
+        <!-- Include styling for our custom controls -->
+        <StyleInclude Source="avares://Oedon.Core.UI/Themes/DefaultTheme.axaml" />
     </Application.Styles>
 </Application>

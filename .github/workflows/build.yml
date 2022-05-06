@@ -8,6 +8,10 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: amd64
+      - name: Checking out required submodules
+        run: git submodule update --init --recursive
+      - name: Bootstrapping Repository
+        run: .\bootstrap.ps1
       - name: Build Windows Debug
         run: msbuild.exe Oedon.sln /property:Configuration=Debug /property:Platform=x64
       - name: Build Windows Release

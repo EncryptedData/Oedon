@@ -5,10 +5,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Build Windows Debug
-        uses: actions/checkout@v2
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
+      - uses: actions/checkout@v2
+      - uses: ilammy/msvc-dev-cmd@v1
+      - with:
           arch: amd64
-        run: msbuild.exe Oedon.sln /property:Configuration=Debug /property:Platform=x64
+      - run: msbuild.exe Oedon.sln /property:Configuration=Debug /property:Platform=x64
       - name: Build Windows Release
-        run: msbuild.exe Oedon.sln /property:Configuration=Release /property:Platform=x64
+      - run: msbuild.exe Oedon.sln /property:Configuration=Release /property:Platform=x64

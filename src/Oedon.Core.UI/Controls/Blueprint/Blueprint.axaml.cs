@@ -3,6 +3,7 @@ using Avalonia.Collections;
 using Avalonia.Controls;
 using Avalonia.Controls.PanAndZoom;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.VisualTree;
 using JetBrains.Annotations;
@@ -56,6 +57,32 @@ public partial class Blueprint : UserControl
     }
     #endregion
 
+    #region ConnectionCreatedEvent
+
+    public static readonly RoutedEvent<BlueprintConnectionEventArgs> ConnectionCreatedEvent =
+        RoutedEvent.Register<BlueprintConnectionEventArgs>(nameof(ConnectionCreated), RoutingStrategies.Direct, typeof(Blueprint));
+
+    public event EventHandler<BlueprintConnectionEventArgs> ConnectionCreated
+    {
+        add => AddHandler(ConnectionCreatedEvent, value);
+        remove => RemoveHandler(ConnectionCreatedEvent, value);
+    }
+    
+    #endregion
+    
+    #region ConnectionDestroyedEvent
+
+    public static readonly RoutedEvent<BlueprintConnectionEventArgs> ConnectionDestroyedEvent =
+        RoutedEvent.Register<BlueprintConnectionEventArgs>(nameof(ConnectionDestroyed), RoutingStrategies.Direct, typeof(Blueprint));
+
+    public event EventHandler<BlueprintConnectionEventArgs> ConnectionDestroyed
+    {
+        add => AddHandler(ConnectionDestroyedEvent, value);
+        remove => RemoveHandler(ConnectionDestroyedEvent, value);
+    }
+    
+    #endregion
+    
     protected override void OnPointerReleased(PointerReleasedEventArgs e)
     {
         if (DataContext is not BlueprintDocumentVM documentVm)
@@ -112,6 +139,13 @@ public partial class Blueprint : UserControl
                             connectionVm.OutputPin = belowPinVm;
                             break;
                     }
+                    
+                    // Fire the Connection created event
+                    var createdEvent = new BlueprintConnectionEventArgs(SelectedConnections.ToList())
+                    {
+                        RoutedEvent = ConnectionCreatedEvent,
+                        Source = this,
+                    };
                     
                     SelectedConnections.Clear();
                     
@@ -279,6 +313,23 @@ public partial class Blueprint : UserControl
 
     private void DestroyConnection(BlueprintConnectionVM connectionVm)
     {
+        // Only fire the ConnectionDestroyed event if this was a "complete" connection
+        if (connectionVm.InputPin is not null && connectionVm.OutputPin is not null)
+        {
+            IReadOnlyList<BlueprintConnectionVM> connections = new List<BlueprintConnectionVM>()
+            {
+                connectionVm
+            };
+
+            // Raise the ConnectionDestroyedEvent
+            BlueprintConnectionEventArgs eventArgs = new(connections)
+            {
+                RoutedEvent = ConnectionDestroyedEvent,
+                Source = this
+            };
+        }
+        
+        
         if (connectionVm.OutputPin?.Connection == connectionVm)
         {
             connectionVm.OutputPin.Connection = null;

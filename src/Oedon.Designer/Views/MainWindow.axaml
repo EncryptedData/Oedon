@@ -18,31 +18,12 @@
             <TextBlock Text="{Binding Path=StatusBarText}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
         
-        <Grid ColumnDefinitions="1*" RowDefinitions="1*,Auto,1*">
+        <Grid ColumnDefinitions="1*" RowDefinitions="Auto,1*">
+            
+            <StackPanel Grid.Row="0" Background="DarkGray" MinHeight="30" />
             
             
-            <StackPanel Grid.Row="0" Orientation="Vertical" Background="Blue">
-                
-            </StackPanel>
-            
-            <GridSplitter Grid.Row="1" MinHeight="5" Background="DarkGray" />
-            
-            <DockPanel Grid.Row="2" >
-                
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                    <Button Content="Add Float Node" Command="{Binding Path=AddTestNodeCommand}" />
-                    <Button Content="Add Add Node" Command="{Binding Path=AddAddNodeCommand}" />
-                    <Button Content="Add Multiply Node" Command="{Binding Path=AddMultiplyNodeCommand}" />
-                    <Button Content="Add Output Node" Command="{Binding Path=AddOutputNodeCommand}" />
-                    <Button Content="Calculate" Command="{Binding Path=DoCalculationCommand}" />
-                    <Label Content="   Calculation Result: " />
-                    <Label Content="{Binding Path=OutputString}" />
-                </StackPanel>
-                
-                <controls:Blueprint />
-            </DockPanel>
-            
-            
+            <DockControl Grid.Row="1" Layout="{Binding Layout}" />
             
         </Grid>
     </DockPanel>

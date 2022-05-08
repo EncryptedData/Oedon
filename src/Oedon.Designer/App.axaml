@@ -11,5 +11,9 @@
         
         <!-- Include styling for our custom controls -->
         <StyleInclude Source="avares://Oedon.Core.UI/Themes/DefaultTheme.axaml" />
+        
+        <!-- Including styling for our Dock -->
+        <StyleInclude Source="avares://Dock.Avalonia/Themes/DockFluentTheme.axaml" />
+        
     </Application.Styles>
 </Application>

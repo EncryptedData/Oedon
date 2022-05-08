@@ -1,0 +1,25 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Oedon.Core.UI.Controls;assembly=Oedon.Core.UI"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Oedon.Designer.Core.UI.Documents.GraphDocument">
+    
+    <DockPanel>
+        
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Button Content="Add Float Node" Command="{Binding Path=AddTestNodeCommand}" />
+            <Button Content="Add Add Node" Command="{Binding Path=AddAddNodeCommand}" />
+            <Button Content="Add Multiply Node" Command="{Binding Path=AddMultiplyNodeCommand}" />
+            <Button Content="Add Output Node" Command="{Binding Path=AddOutputNodeCommand}" />
+            <Button Content="Calculate" Command="{Binding Path=DoCalculationCommand}" />
+            <Label Content="   Calculation Result: " />
+            <Label Content="{Binding Path=OutputString}" />
+        </StackPanel>
+                
+        <controls:Blueprint />
+        
+    </DockPanel>
+    
+</UserControl>

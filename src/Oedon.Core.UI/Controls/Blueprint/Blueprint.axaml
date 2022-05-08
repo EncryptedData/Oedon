@@ -20,9 +20,9 @@
     </UserControl.Styles>
     
     <UserControl.Resources>
-        <VisualBrush x:Key="GridBackground" TileMode="Tile" SourceRect="0,0,20,20" DestinationRect="0,0,20,20">
+        <VisualBrush x:Key="GridBackground" TileMode="Tile" SourceRect="0,0,20,20" DestinationRect="0,0,20,20"> 
             <VisualBrush.Visual>
-                <Path Data="M 0,0 L 0,20 L 20,20" Stroke="DarkGray" StrokeThickness="2" />
+                <Path Data="M 0,0 L 0,20 L 20,20" Stroke="DarkGray" StrokeThickness="2" Stretch="Fill"/>
             </VisualBrush.Visual>
         </VisualBrush>
         
@@ -34,23 +34,28 @@
                 Focusable="True"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
-                Initialized="ZoomBorder_Initialized">
+                Initialized="ZoomBorder_Initialized"
+                MaxZoomX="2"
+                MaxZoomY="2"
+                MinZoomX="0.5"
+                MinZoomY="0.5">
         
         <AdornerLayer>
-            <ItemsControl Items="{Binding BlueprintItems}">
+            <ItemsControl Items="{Binding BlueprintItems}" ClipToBounds="False">
+                
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas Background="{StaticResource GridBackground}"
+                        <Canvas 
+                                Background="{StaticResource GridBackground}"
                                 ClipToBounds="False"
-                                Initialized="Canvas_OnInitialized" />
+                                Initialized="Canvas_OnInitialized">
+                        </Canvas>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             
                 <ItemsControl.DataTemplates>
-                
-                
                     <DataTemplate DataType="controls:BlueprintConnectionVM">
-                        <controls:BlueprintConnection />
+                        <controls:BlueprintConnection ClipToBounds="False" />
                     </DataTemplate>
                 </ItemsControl.DataTemplates>
             </ItemsControl>

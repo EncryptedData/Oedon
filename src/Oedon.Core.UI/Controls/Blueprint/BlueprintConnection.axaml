@@ -5,5 +5,5 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:controls="clr-namespace:Oedon.Core.UI.Controls"
              x:Class="Oedon.Core.UI.Controls.BlueprintConnection">
-    <controls:CurvedLine StartPos="{Binding Path=OutputPos}" EndPos="{Binding Path=InputPos}"/>
+    <controls:CurvedLine StartPos="{Binding Path=OutputPos}" EndPos="{Binding Path=InputPos}" Thickness="5" Stroke="Black"/>
 </UserControl>

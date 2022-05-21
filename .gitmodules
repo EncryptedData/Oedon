@@ -1,3 +1,6 @@
 [submodule "externals/vcpkg"]
 	path = externals/vcpkg
 	url = https://github.com/microsoft/vcpkg
+[submodule "externals/EncryptedData.EventAggregator"]
+	path = externals/EncryptedData.EventAggregator
+	url = https://github.com/EncryptedData/EncryptedData.EventAggregator.git

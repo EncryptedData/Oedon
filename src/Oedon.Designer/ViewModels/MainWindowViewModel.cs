@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using EncryptedData.EventAggregator;
+using EncryptedData.EventAggregator.Avalonia;
 using Oedon.Core.UI.Controls;
 using Oedon.Core.UI.Views;
 using Oedon.Designer.Core.UI.Nodes;
@@ -87,5 +89,8 @@ namespace Oedon.Designer.ViewModels
         }
         
         private string _outputString = String.Empty;
+        
+        // Ideally use DI
+        private IEventAggregator _eventAggregator = new AvaloniaEventAggregator();
     }
 }

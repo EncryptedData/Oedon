@@ -17,7 +17,7 @@ public partial class CurvedLine : UserControl
         AvaloniaXamlLoader.Load(this);
     }
 
-    #region CurvedLine
+    #region StartPos
 
     // StartPos is the point that represents the start of our curved line
     public static readonly DirectProperty<CurvedLine, Point> StartPosProperty =

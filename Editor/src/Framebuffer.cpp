@@ -1,6 +1,7 @@
 
 #include "Framebuffer.h"
 
+#include <cassert>
 #include <glbinding/gl46core/gl.h>
 
 namespace Oedon::Editor

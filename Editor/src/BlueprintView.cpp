@@ -5,7 +5,7 @@
 #include "BlueprintView.h"
 #include "BlueprintViewModel.h"
 
-#include "nodes/CubeNode.h"
+#include "nodes/MeshNode.h"
 #include "nodes/MeshTransformNode.h"
 #include "nodes/ConstantNode.h"
 #include "nodes/LineLerper.h"
@@ -482,7 +482,7 @@ namespace Oedon::Editor
     void BlueprintView::View(BlueprintViewModel* vm)
     {
         const char* nodes[] = {
-                "Cube",
+                "Mesh",
                 "Mesh Transform",
                 "Constant Value",
                 "Line Lerper",
@@ -499,7 +499,7 @@ namespace Oedon::Editor
             {
                 case 0:
                 {
-                    vm->BuildNode<CubeNode>();
+                    vm->BuildNode<MeshNode>();
                     break;
                 }
                 case 1:

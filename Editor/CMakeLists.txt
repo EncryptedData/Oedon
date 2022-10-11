@@ -11,7 +11,7 @@ set(OEDON_EDITOR_SRC
         src/SceneView.cpp
         src/SceneViewModel.cpp
         src/NodeFactory.cpp
-        src/nodes/CubeNode.cpp
+        src/nodes/MeshNode.cpp
         src/EventDispatcher.cpp
         src/MainWindowViewModel.cpp src/nodes/MeshTransformNode.cpp src/PropertiesView.cpp src/nodes/ConstantNode.cpp src/nodes/LineLerper.cpp)
 

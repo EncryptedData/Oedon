@@ -83,8 +83,10 @@ namespace Oedon::Editor
                 {
                     case DataVariantType::Mesh:
                     {
-                        std::vector<Vertex> verts;
-                        ToVertecies(verts, pin->cache->mesh);
+                        std::vector<FatVertex> verts;
+                        //ToVertecies(verts, pin->cache->mesh);
+
+                        ToFatVerticies(verts, pin->cache->mesh);
 
                         mesh = std::make_shared<GpuMesh>(verts);
                         currentShader = shader;
@@ -97,6 +99,8 @@ namespace Oedon::Editor
                         currentShader = pointsShader;
                         break;
                     }
+                    case DataVariantType::Empty:
+                        break;
                 }
 
 

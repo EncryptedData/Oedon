@@ -2,7 +2,7 @@
 set(OEDON_SRC
         src/stub.cpp
         src/Shapes.cpp
-        src/DataVariant.cpp src/Mesh.cpp)
+        src/DataVariant.cpp src/Mesh.cpp src/FatVertex.cpp)
 
 add_library(oedon ${OEDON_SRC})
 

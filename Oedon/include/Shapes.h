@@ -12,5 +12,5 @@ namespace Oedon
 
     Mesh Cube(float size = 1.0f);
 
-    void Sphere(std::vector<Vertex> buffer, float radius);
+    Mesh Sphere(std::uint64_t hcount, std::uint64_t vcount, float diameter = 1.0f);
 }

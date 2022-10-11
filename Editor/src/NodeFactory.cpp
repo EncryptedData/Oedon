@@ -2,7 +2,7 @@
 #include "NodeFactory.h"
 
 // Nodes
-#include "nodes/CubeNode.h"
+#include "nodes/MeshNode.h"
 #include "nodes/MeshTransformNode.h"
 
 namespace Oedon::Editor
@@ -24,7 +24,7 @@ namespace Oedon::Editor
 
     void NodeFactory::RegisterNodes()
     {
-        Register<CubeNode>();
+        Register<MeshNode>();
         Register<MeshTransformNode>();
     }
 }

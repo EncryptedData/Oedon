@@ -4,6 +4,7 @@
 #include <typeindex>
 #include <typeinfo>
 #include <type_traits>
+#include <memory>
 
 namespace Oedon::Editor
 {

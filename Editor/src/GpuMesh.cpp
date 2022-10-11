@@ -7,20 +7,20 @@ namespace Oedon::Editor
 {
     using namespace gl;
 
-    GpuMesh::GpuMesh(const std::vector<Vertex> &vertices)
+    GpuMesh::GpuMesh(const std::vector<FatVertex> &vertices)
     {
         glGenVertexArrays(1, &_vao);
         glBindVertexArray(_vao);
 
         glGenBuffers(1, &_vbo);
         glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(FatVertex), vertices.data(), GL_STATIC_DRAW);
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)__offsetof(Vertex, pos));
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(FatVertex), (void*)offsetof(FatVertex, pos));
         glEnableVertexAttribArray(0);
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)__offsetof(Vertex, normal));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(FatVertex), (void*)offsetof(FatVertex, normal));
         glEnableVertexAttribArray(1);
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)__offsetof(Vertex, uv));
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(FatVertex), (void*)offsetof(FatVertex, uv));
         glEnableVertexAttribArray(2);
 
         _faceCount = vertices.size();

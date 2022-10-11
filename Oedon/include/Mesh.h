@@ -1,9 +1,9 @@
 #pragma once
 
-#include "FatVertex.h"
-
 #include <vector>
 #include <unordered_map>
+#include <numeric>
+#include <cinttypes>
 
 #include <glm/glm.hpp>
 
@@ -12,12 +12,17 @@ namespace Oedon
     using VertexId = std::uint64_t;
     using HalfEdgeId = std::uint64_t;
     using FaceId = std::uint64_t;
+    const HalfEdgeId InvalidId = std::numeric_limits<std::uint64_t>::max();
 
     struct HalfEdge
     {
+        explicit HalfEdge();
+
+        HalfEdge(const HalfEdge& other);
+
         HalfEdgeId prev;
         HalfEdgeId next;
-        //HalfEdgeId twin;
+        HalfEdgeId twin;
 
         VertexId vertex;
         FaceId face;
@@ -30,7 +35,14 @@ namespace Oedon
 
     struct Vertex
     {
+        explicit Vertex();
+
+        Vertex(const Vertex& v);
+
+        ~Vertex();
+
         glm::vec3 position;
+        HalfEdgeId halfEdge;
     };
 
     class Mesh
@@ -39,22 +51,32 @@ namespace Oedon
 
         explicit Mesh();
 
-        Face& GetFace(FaceId faceId);
+        Mesh(const Mesh& other);
 
-        Vertex& GetVertex(VertexId vertexId);
+        Face& GetFace(FaceId faceId);
+        const Face& GetFace(FaceId faceId) const;
+
+        Vertex& GetVertex(VertexId vertexId) ;
+        const Vertex& GetVertex(VertexId vertexId) const;
 
         HalfEdge& GetHalfEdge(HalfEdgeId halfEdgeId);
+        const HalfEdge& GetHalfEdge(HalfEdgeId halfEdgeId) const;
 
-        VertexId AddVertex(const glm::vec3& pos);
+        VertexId AddVertex(const glm::vec3& pos, HalfEdgeId halfEdge = InvalidId);
 
+        FaceId AddFace(const std::vector<VertexId>& verts);
 
+        const std::vector<FaceId>& faces() const;
 
-        FaceId AddFace(std::initializer_list<VertexId> verts);
+        const std::unordered_map<VertexId, Vertex>& verticies() const;
+
+        void ApplyTransform(const glm::mat4& m);
 
     private:
 
         std::unordered_map<VertexId, Vertex> _verts;
         std::unordered_map<FaceId, Face> _faces;
+        std::vector<FaceId> _facesV;
         std::unordered_map<HalfEdgeId, HalfEdge> _halfEdges;
         std::uint64_t _ids;
 

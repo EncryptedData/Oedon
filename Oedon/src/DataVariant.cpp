@@ -38,7 +38,7 @@ namespace Oedon
         switch(dataVariantType)
         {
             case DataVariantType::Mesh:
-                new (&mesh) Mesh;
+                new (&mesh) Mesh();
                 break;
             case DataVariantType::Points:
                 new (&points) std::vector<Point>();

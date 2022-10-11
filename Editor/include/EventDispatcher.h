@@ -5,6 +5,7 @@
 #include <typeindex>
 #include <functional>
 #include <vector>
+#include <cinttypes>
 
 namespace Oedon::Editor
 {

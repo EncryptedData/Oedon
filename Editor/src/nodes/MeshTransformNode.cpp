@@ -94,26 +94,11 @@ namespace Oedon::Editor
         transformation = glm::translate(transformation, _translation);
         transformation = glm::rotate(transformation, _rotAngle, _rotAxis);
         transformation = glm::scale(transformation, _scale);
-        glm::mat4 inverseTransform = glm::transpose(glm::inverse(transformation));
 
-        PrintMat(transformation, "Transform");
-        PrintMat(inverseTransform, "Inverse Transform");
+        //PrintMat(transformation, "Transform");
 
         outputData.mesh = inputData.mesh;
-
-        for(auto& vert : outputData.mesh.verticies)
-        {
-            glm::vec4 position = transformation * glm::vec4(vert, 1.0f);
-            float w = position.w;
-            position /= w;
-
-            vert = glm::vec3(position);
-        }
-
-        for(auto& normal : outputData.mesh.normals)
-        {
-            normal = glm::normalize(glm::vec3(glm::vec4(normal, 0.0f) * inverseTransform));
-        }
+        outputData.mesh.ApplyTransform(transformation);
 
         return TravelStatus::Done;
     }

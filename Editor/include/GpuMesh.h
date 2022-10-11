@@ -12,7 +12,7 @@ namespace Oedon::Editor
     {
     public:
 
-        explicit GpuMesh(const std::vector<Vertex>& vertices);
+        explicit GpuMesh(const std::vector<FatVertex>& vertices);
 
         explicit GpuMesh(const std::vector<glm::vec3>& points);
 

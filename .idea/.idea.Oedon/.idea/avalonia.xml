@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="Editor/OedonEditor/App.axaml" value="Editor/OedonEditor/OedonEditor.csproj" />
+        <entry key="Editor/OedonEditor/Views/MainWindow.axaml" value="Editor/OedonEditor/OedonEditor.csproj" />
+        <entry key="Editor/OedonEditor/Views/MainWindowMenu.axaml" value="Editor/OedonEditor/OedonEditor.csproj" />
+        <entry key="Editor/OedonEditor/Views/MainWindowStatusBar.axaml" value="Editor/OedonEditor/OedonEditor.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
